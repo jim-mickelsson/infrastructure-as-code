@@ -1,0 +1,25 @@
+# Vagrant internals
+.vagrant/
+
+# Ansible local state and secrets
+*.retry
+*.log
+.vault_pass
+*secrets.yml
+ansible_facts/
+
+# Python environment (Ansible is Python-based)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# IDE and System files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.*swp
