@@ -1,14 +1,23 @@
 Vagrant.configure("2") do |config|
-  # Define OS image
+  # Set the base operating system image
   config.vm.box = "ubuntu/jammy64"
 
-  # Assign a private, static IP address.
-  config.vm.network "private_network", ip: "192.168.99.10"
+  # Sync the parent directory to the /project folder on the guest
+  config.vm.synced_folder "../", "/project"
 
-  # Define VM provider and hardware
-  config.vm.provider "virtualbox" do |vb|
-    vb.memory = "2048"
-    vb.cpus = 2
-    vb.name = "iac-learning-node"
+  # --- Control Node Configuration ---
+  config.vm.define "control" do |ctrl|
+    # Set the internal OS hostname
+    ctrl.vm.hostname = "control"
+    
+    # Assign a static private IP address
+    ctrl.vm.network "private_network", ip: "192.168.99.10"
+
+    # VirtualBox-specific hardware settings
+    ctrl.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+      vb.cpus = 2
+      vb.name = "iac-learning-node"
+    end
   end
 end
