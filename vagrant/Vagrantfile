@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
       vb.name = "iac-learning-node" # Set the display name in the VirtualBox application
     end
 
-    ctrl.vm.provision "shell", inline: "apt-get update -y" # Check for available updates (always do before installing/upgrading). "apt-get upgrade installs the updates found"
+    ctrl.vm.provision "shell", inline: "apt-get update -y" # Check for available updates (always do before installing/upgrading). "apt-get upgrade installs the available updates"
 
     ctrl.vm.provision "ansible_local" do |ansible| # Use Ansible installed on the VM to run configuration tasks
       ansible.install = true # Automatically install Ansible on the guest if it is not present

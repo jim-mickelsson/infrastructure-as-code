@@ -1,9 +1,25 @@
 ---
-- name: Bootstrap Control Node # Purpose of the automation play
-  hosts: localhost # Execution target (the local management machine)
-  connection: local # Executes commands directly without SSH
-  become: true # Runs tasks with administrative privileges
+# Playbook to initialize and verify the Ansible environment on the Control Node
+- name: Bootstrap Control Node
+  
+  # Target the local management machine
+  hosts: localhost
+  
+  # Execute tasks directly on the guest VM without using the SSH service
+  connection: local
+  
+  # Elevate privileges to administrative (root) level for all tasks
+  become: true
+  
+  # List of instructions to be performed by Ansible
   tasks:
-    - name: Verify connection # Label for the testing step
-      debug: # Ansible module used for printing output
-        msg: "Running locally on the Control Node" # Message displayed during execution
+    
+    # Internal functional test to confirm the Ansible engine is active
+    - name: Verify Ansible execution environment
+      ansible.builtin.ping:
+
+    # Confirmation step to display the status in the console output
+    - name: Verify project directory access
+      ansible.builtin.debug:
+        # Message confirming the location and success of the execution
+        msg: "Running locally on the Control Node"
