@@ -1,0 +1,9 @@
+---
+- name: Bootstrap Control Node # Purpose of the automation play
+  hosts: localhost # Execution target (the local management machine)
+  connection: local # Executes commands directly without SSH
+  become: true # Runs tasks with administrative privileges
+  tasks:
+    - name: Verify connection # Label for the testing step
+      debug: # Ansible module used for printing output
+        msg: "Running locally on the Control Node" # Message displayed during execution
